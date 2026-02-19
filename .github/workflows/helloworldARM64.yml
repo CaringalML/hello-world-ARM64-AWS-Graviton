@@ -22,7 +22,12 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and Push ARM64 image
+      - name: Build and Push users-service ARM64 image
         run: |
           docker build -t rencecaringal000/helloworldarm64:latest .
           docker push rencecaringal000/helloworldarm64:latest
+
+      - name: Build and Push nginx-proxy ARM64 image
+        run: |
+          docker build -t rencecaringal000/helloworldproxy:latest ./proxy
+          docker push rencecaringal000/helloworldproxy:latest

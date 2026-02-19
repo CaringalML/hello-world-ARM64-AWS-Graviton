@@ -1,0 +1,22 @@
+services:
+  users-service:
+    build: .
+    container_name: users-service
+    ports:
+      - "8080:80"
+    networks:
+      - appnet
+
+  nginx-proxy:
+    build: ./proxy
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+    depends_on:
+      - users-service
+    networks:
+      - appnet
+
+networks:
+  appnet:
+    driver: bridge
